@@ -11,11 +11,11 @@ let db = new sqlite3.Database(path.join(__dirname, 'todo.db'), (err) => {
 
   // 创建待办事项表（如果不存在）
   db.run(`CREATE TABLE IF NOT EXISTS todos (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    title TEXT NOT NULL,
-    completed BOOLEAN NOT NULL DEFAULT 0,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-  )`);
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        title TEXT NOT NULL,
+        completed BOOLEAN NOT NULL DEFAULT 0,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    )`);
 });
 
 function createWindow() {
@@ -41,17 +41,17 @@ function createWindow() {
 app.whenReady().then(() => {
   createWindow();
 
-  app.on('activate', function() {
+  app.on('activate', function () {
     if (BrowserWindow.getAllWindows().length === 0) createWindow();
   });
 });
 
 // 当所有窗口关闭时退出应用程序（Windows & Linux）
-app.on('window-all-closed', function() {
+app.on('window-all-closed', function () {
   if (process.platform !== 'darwin') app.quit();
 });
 
-// IPC通信处理（保持不变）
+// IPC通信处理
 ipcMain.handle('get-todos', () => {
   return new Promise((resolve, reject) => {
     db.all('SELECT * FROM todos ORDER BY created_at DESC', (err, rows) => {
@@ -67,7 +67,7 @@ ipcMain.handle('get-todos', () => {
 // 添加待办事项
 ipcMain.handle('add-todo', (event, title) => {
   return new Promise((resolve, reject) => {
-    db.run('INSERT INTO todos (title) VALUES (?)', [title], function(err) {
+    db.run('INSERT INTO todos (title) VALUES (?)', [title], function (err) {
       if (err) {
         reject(err);
       } else {
@@ -80,7 +80,7 @@ ipcMain.handle('add-todo', (event, title) => {
 // 更新待办事项
 ipcMain.handle('update-todo', (event, id, title, completed) => {
   return new Promise((resolve, reject) => {
-    db.run('UPDATE todos SET title = ?, completed = ? WHERE id = ?', [title, completed, id], function(err) {
+    db.run('UPDATE todos SET title = ?, completed = ? WHERE id = ?', [title, completed, id], function (err) {
       if (err) {
         reject(err);
       } else {
@@ -93,7 +93,7 @@ ipcMain.handle('update-todo', (event, id, title, completed) => {
 // 删除待办事项
 ipcMain.handle('delete-todo', (event, id) => {
   return new Promise((resolve, reject) => {
-    db.run('DELETE FROM todos WHERE id = ?', [id], function(err) {
+    db.run('DELETE FROM todos WHERE id = ?', [id], function (err) {
       if (err) {
         reject(err);
       } else {
