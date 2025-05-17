@@ -1,0 +1,64 @@
+/* 全局样式 */
+body {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+}
+
+/* 待办事项样式 */
+.todo-item {
+    transition: all 0.2s ease;
+}
+
+.todo-item:hover {
+    background-color: #f9fafb;
+}
+
+.todo-title-edit {
+    width: 100%;
+    padding: 0.25rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+}
+
+/* 按钮动画 */
+button {
+    transition: transform 0.15s ease;
+}
+
+button:hover {
+    transform: translateY(-1px);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+/* 复选框样式 */
+.todo-checkbox {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 1.25rem;
+    height: 1.25rem;
+    border: 2px solid #9ca3af;
+    border-radius: 0.25rem;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.todo-checkbox:checked {
+    background-color: #3b82f6;
+    border-color: #3b82f6;
+}
+
+.todo-checkbox:checked::after {
+    content: '\2713';
+    position: absolute;
+    top: -0.15rem;
+    left: 0.15rem;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+}

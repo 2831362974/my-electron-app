@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo App</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .content-auto {
+        content-visibility: auto;
+      }
+      .line-through {
+        text-decoration: line-through;
+      }
+    }
+  </style>
+</head>
+<body class="bg-gray-100 font-sans">
+<div class="container mx-auto px-4 py-8 max-w-3xl">
+  <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
+    <h1 class="text-3xl font-bold text-gray-800 mb-4">Todo App</h1>
+
+    <form id="todo-form" class="flex mb-6">
+      <input
+              type="text"
+              id="todo-input"
+              placeholder="添加新的待办事项..."
+              class="flex-1 px-4 py-2 border border-gray-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              required
+      >
+      <button
+              type="submit"
+              class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-r-lg transition-colors duration-200"
+      >
+        <i class="fa fa-plus"></i> 添加
+      </button>
+    </form>
+
+    <div id="todo-list" class="divide-y divide-gray-200"></div>
+  </div>
+
+  <footer class="text-center text-gray-500 text-sm">
+    <p>© 2025 Todo App - 一个使用 Electron 和 SQLite 开发的应用</p>
+  </footer>
+</div>
+
+<script src="renderer.js"></script>
+</body>
+</html>
